@@ -10,13 +10,11 @@ async def on_ready():
     print("user ON")
 
 @tasks.loop(hours=2.0)
-async def sender(startingUp=True):
-    if startingUp:
-        await asyncio.sleep(5)
-        startingUp = False
+async def sendPokemonComand():
+    await asyncio.sleep(5)
 
     channel = client.get_channel(764512553392799754)
     await channel.send("$p")
 
-sender.start()
+sendPokemonComand.start()
 client.run(os.environ.get("USER_TOKEN"), bot=False)
